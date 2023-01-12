@@ -1,0 +1,17 @@
+<div *ngIf="!editing">
+  <div class="row my-2">
+      <div class="col">{{policyInput.policyNumber}}</div>
+      <div class="col">{{policyInput.policyHolder.name}}</div>
+      <div class="col">{{policyInput.policyHolder.age}}</div>
+      <div class="col">{{policyInput.policyHolder.gender}}</div>
+      <div class="col">
+        <button class="btn btn-warning btn-sm mx-2" (click)="editPolicy()">Edit</button>
+        <button class="btn btn-danger btn-sm mx-2" (click)="deletePolicy(policyInput)">Delete</button>
+      </div>
+  </div>
+</div>
+<app-policy-form *ngIf="editing"
+        [policyInput]="policyInput"
+        (submitPolicy)="onSubmitPolicy($event)"
+        (cancel)="onCancel()"
+></app-policy-form>

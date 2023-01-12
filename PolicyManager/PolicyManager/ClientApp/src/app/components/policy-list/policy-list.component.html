@@ -1,0 +1,21 @@
+<div class="container card shadow mt-5">
+  <div class="card-header">
+    <div class="row">
+      <div class="col">
+        <p class="text-warning"><strong>Policy Number</strong></p>
+      </div>
+      <div class="col">
+        <p class="text-warning"><strong>Policy Holder Name</strong></p>
+      </div>
+      <div class="col">
+        <p class="text-warning"><strong>Policy Holder Age</strong></p>
+      </div>
+      <div class="col">
+        <p class="text-warning"><strong>Policy Holder Gender</strong></p>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+  <app-policy-form (submitPolicy)="onSubmitPolicy($event)"></app-policy-form>
+  <app-policy-item *ngFor="let policy of policies$ | async" [policyInput]="policy"></app-policy-item>
+</div>

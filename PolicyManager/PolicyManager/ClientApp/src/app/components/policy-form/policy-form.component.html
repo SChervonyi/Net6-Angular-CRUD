@@ -1,0 +1,53 @@
+<form [formGroup]="policyForm" (ngSubmit)="onSubmit(policyForm)">
+  <div class="cross-validation"
+    [class.cross-validation-error]="policyForm.errors?.['identityRevealed'] && (policyForm.touched || policyForm.dirty)">
+    <div class="row my-2">
+      <div class="col">
+        <input
+          formControlName="policyNumber"
+          class="form-control"
+          placeholder="Policy number"
+          required />
+        <div
+          *ngIf="
+            policyNumber.invalid &&
+            (policyNumber.dirty || policyNumber.touched)
+          "
+          class="alert alert-danger">
+          <div *ngIf="policyNumber.errors?.['required']">
+            Policy Number is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <select
+          id="policyHolder"
+          class="form-control"
+          formControlName="policyHolder"
+          [formControl]="policyPlaceholderCtrl"
+          required>
+          <option *ngFor="let ph of policyHolders" [value]="ph.name">
+            {{ ph.name }}
+          </option>
+        </select>
+
+        <div
+          *ngIf="policyHolder.invalid && policyHolder.touched"
+          class="alert alert-danger">
+          <div *ngIf="policyHolder.errors?.['required']">
+            Policy Holder is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="col"></div>
+      <div class="col"></div>
+
+      <div class="col">
+        <button type="submit" class="btn btn-primary btn-sm mx-2" [disabled]="policyForm.invalid">{{isEditMode ? 'Add' : 'Update'}}</button>
+        <button *ngIf="!isEditMode" type="button" class="btn btn-secondary btn-sm mx-2" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>
