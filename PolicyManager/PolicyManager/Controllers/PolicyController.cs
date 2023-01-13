@@ -43,6 +43,7 @@ namespace PolicyManager.Controllers
         /// </summary>
         /// <param name="Policy"></param>
         /// <response code="200">Success.</response>
+        /// <response code="422">Unprocessable Entity.</response>
         /// <returns>Added policy.</returns>
         [HttpPost]
         public Policy Add([FromBody] Policy policy)
@@ -56,6 +57,7 @@ namespace PolicyManager.Controllers
         /// <param name="policyId"></param>
         /// <param name="policy"></param>
         /// <response code="200">Success.</response>
+        /// <response code="422">Unprocessable Entity.</response>
         /// <response code="404">Not found.</response>
         /// <returns>Updated policy.</returns>
         [HttpPut("{policyId}")]
