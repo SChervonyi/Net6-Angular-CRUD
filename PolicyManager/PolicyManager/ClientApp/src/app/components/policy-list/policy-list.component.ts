@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { Policy } from 'src/app/models/Policy';
+import { Policy } from 'src/app/models/policy';
 import { PolicyService } from 'src/app/services/policy.service';
 
 @Component({

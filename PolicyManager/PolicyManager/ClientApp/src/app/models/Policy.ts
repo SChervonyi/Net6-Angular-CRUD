@@ -1,4 +1,4 @@
-import { PolicyHolder } from "./PolicyHolder";
+import { PolicyHolder } from "./policyHolder";
 
 export interface Policy {
   id?: string,
