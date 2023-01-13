@@ -22,9 +22,9 @@
 
       <div class="col">
         <select
-          id="policyHolder"
+          id="policyHolderName"
           class="form-control"
-          formControlName="policyHolder"
+          formControlName="policyHolderName"
           [formControl]="policyPlaceholderCtrl"
           required>
           <option *ngFor="let ph of policyHolders" [value]="ph.name">
@@ -33,9 +33,9 @@
         </select>
 
         <div
-          *ngIf="policyHolder.invalid && policyHolder.touched"
+          *ngIf="policyHolderName.invalid && policyHolderName.touched"
           class="alert alert-danger">
-          <div *ngIf="policyHolder.errors?.['required']">
+          <div *ngIf="policyHolderName.errors?.['required']">
             Policy Holder is required.
           </div>
         </div>

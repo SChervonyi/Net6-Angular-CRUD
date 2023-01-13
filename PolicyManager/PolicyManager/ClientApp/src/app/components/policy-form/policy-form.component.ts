@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Policy } from 'src/app/models/Policy';
 import { PolicyHolder } from 'src/app/models/PolicyHolder';
 import { PolicyHolderService } from 'src/app/services/policy-holder.service';
@@ -9,46 +10,55 @@ import { PolicyHolderService } from 'src/app/services/policy-holder.service';
   templateUrl: './policy-form.component.html',
   styleUrls: ['./policy-form.component.scss']
 })
-export class PolicyFormComponent implements OnInit {
+export class PolicyFormComponent implements OnInit, OnDestroy {
 
   @Input() policyInput: Policy | null = null;
   @Output() submitPolicy = new EventEmitter<Policy>();
   @Output() cancel = new EventEmitter();
 
-  public policyHolders!: PolicyHolder[];
-  public policyForm!: FormGroup;
+  public policyHolders: PolicyHolder[] = [];
+  public policyForm: FormGroup;
   public isEditMode: boolean = false;
   public policyPlaceholderCtrl: FormControl = new FormControl();
+
+  private sub?: Subscription;
 
   constructor(
     private policyHolderService: PolicyHolderService,
     private fb: FormBuilder) {
+      this.policyForm = this.fb.group({
+        policyNumber: ['', Validators.required],
+        policyHolderName: ['', Validators.required],
+      });
   }
 
   ngOnInit(): void {
-    this.policyHolderService.get().subscribe(values => this.policyHolders = values);
-    this.isEditMode = !this.policyInput;
+    this.sub = this.policyHolderService.get()
+      .subscribe(values => this.policyHolders = values);
 
-    this.policyForm = this.fb.group({
-      policyNumber: [this.policyInput?.policyNumber ?? '', Validators.required],
-      policyHolder: [this.policyInput?.policyHolder?.name ?? 'Hello', Validators.required],
-    });
+    this.isEditMode = !this.policyInput;
+    if(this.policyInput){
+      this.policyForm.setValue({
+        policyNumber: this.policyInput.policyNumber,
+        policyHolderName: this.policyInput.policyHolder.name
+      });
+    }
   }
 
   get policyNumber() { return this.policyForm.get('policyNumber')!; }
 
-  get policyHolder() { return this.policyForm.get('policyHolder')!; }
+  get policyHolderName() { return this.policyForm.get('policyHolderName')!; }
 
   onSubmit(form: FormGroup){
-    const policyHolder = this.policyHolders.find(ph => ph.name === form.value.policyHolder);
-    if(!policyHolder){
+    const selectedPolicyHolder = this.policyHolders.find(ph => ph.name === form.value.policyHolderName);
+    if(!selectedPolicyHolder){
       return;
     }
 
     const policy = {
       id: this.policyInput?.id,
       policyNumber: form.value.policyNumber,
-      policyHolder: policyHolder
+      policyHolder: selectedPolicyHolder
     };
 
     this.submitPolicy.emit(policy);
@@ -57,5 +67,9 @@ export class PolicyFormComponent implements OnInit {
 
   onCancel(){
     this.cancel.emit();
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
 }
