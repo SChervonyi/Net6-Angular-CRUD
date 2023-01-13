@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Policy } from 'src/app/models/policy';
-import { PolicyService } from 'src/app/services/policy.service';
+import { Policy } from '../../models/policy';
+import { PolicyService } from '../../services/policy.service';
 
 @Component({
   selector: 'app-policy-item',

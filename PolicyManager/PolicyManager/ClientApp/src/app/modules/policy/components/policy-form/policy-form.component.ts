@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Policy } from 'src/app/models/policy';
-import { PolicyHolder } from 'src/app/models/policyHolder';
-import { PolicyHolderService } from 'src/app/services/policy-holder.service';
+import { Policy } from '../../models/policy';
+import { PolicyHolder } from '../..//models/policyHolder';
+import { PolicyHolderService } from '../../services/policy-holder.service';
 
 @Component({
   selector: 'app-policy-form',

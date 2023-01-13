@@ -4,11 +4,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { Policy } from '../models/policy';
 import { environment } from 'src/environments/environment';
-import { ErrorHandlerService } from './error-hander.service';
+import { ErrorHandlerService } from 'src/app/core/services/error-hander.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PolicyService {
   private values$: BehaviorSubject<Policy[]> = new BehaviorSubject<Policy[]>([]);
   private cached: boolean = false;

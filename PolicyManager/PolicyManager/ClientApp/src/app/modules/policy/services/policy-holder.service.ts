@@ -2,13 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { catchError, switchMap, tap } from "rxjs/operators";
+import { ErrorHandlerService } from "src/app/core/services/error-hander.service";
 import { environment } from "src/environments/environment";
 import { PolicyHolder } from "../models/policyHolder";
-import { ErrorHandlerService } from "./error-hander.service";
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PolicyHolderService {
   private values$: BehaviorSubject<PolicyHolder[]> = new BehaviorSubject<PolicyHolder[]>([]);
   private cached: boolean = false;
