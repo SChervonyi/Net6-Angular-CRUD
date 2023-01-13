@@ -17,7 +17,10 @@ import { CoreModule } from './core/core.module';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     HttpClientModule,
     CoreModule,
     PolicyModule,
