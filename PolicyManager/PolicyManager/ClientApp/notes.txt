@@ -1,0 +1,6 @@
+Top 11 best practices: https://aglowiditsolutions.com/blog/angular-best-practices/
+Angular Best Practices — 2022: https://medium.com/@d.gerbede/angular-best-practices-2022-8aba5910466
+              Stackblitz: https://stackblitz.com/edit/angular-ivy-discovery-a54uin
+10 Angular Folder Structure Best Practices: https://climbtheladder.com/10-angular-folder-structure-best-practices/
+Routing: https://appdividend.com/2022/02/03/angular-routing-and-sub-routing/
+Routing example: https://github.com/KrunalLathiya/Angular7RoutingExample/tree/master/src/app

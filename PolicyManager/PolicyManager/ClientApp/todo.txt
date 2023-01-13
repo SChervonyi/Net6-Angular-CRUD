@@ -1,0 +1,4 @@
+1. Add component tests: https://github.com/KrunalLathiya/Angular7RoutingExample/tree/master/src/app
+2. Add media query for small width
+3. Move to Jest
+4. Add unit tests
