@@ -4,3 +4,8 @@ Angular Best Practices — 2022: https://medium.com/@d.gerbede/angular-best-prac
 10 Angular Folder Structure Best Practices: https://climbtheladder.com/10-angular-folder-structure-best-practices/
 Routing: https://appdividend.com/2022/02/03/angular-routing-and-sub-routing/
 Routing example: https://github.com/KrunalLathiya/Angular7RoutingExample/tree/master/src/app
+
+CRUD Cache service: https://medium.com/@dariusmihneabogdan/how-to-write-a-shared-crud-service-in-angular-and-cache-the-data-462908ef178
+4 Cache libs: https://danielk.tech/home/angular-http-cache-how-to
+Cache with Http Interceptor: https://blog.logrocket.com/caching-with-httpinterceptor-in-angular/
+Cache Service: https://medium.com/@AurelienLeloup/cache-http-requests-with-rxjs-for-angular-eb9bee93824d
