@@ -9,7 +9,7 @@ const routes: Routes = [
     component: PolicyComponent,
       children: [
         {
-            path: 'list',
+            path: '',
             component: PolicyListComponent
         }
       ]
