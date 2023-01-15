@@ -8,7 +8,7 @@ import { PolicyFormComponent } from './components/policy-form/policy-form.compon
 import { PolicyHolderService } from './services/policy-holder.service';
 import { PolicyService } from './services/policy.service';
 import { PolicyRoutingModule } from './policy-routing.module';
-import { PolicyComponent } from './components/policy/policy.component';
+import { PolicyComponent } from './pages/policy/policy.component';
 
 @NgModule({
   declarations: [
