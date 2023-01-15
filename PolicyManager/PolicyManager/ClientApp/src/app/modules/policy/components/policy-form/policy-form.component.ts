@@ -27,7 +27,7 @@ export class PolicyFormComponent implements OnInit, OnDestroy {
     private policyHolderService: PolicyHolderService,
     private fb: FormBuilder) {
       this.policyForm = this.fb.group({
-        policyNumber: ['', Validators.required],
+        policyNumber: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
         policyHolderName: ['', Validators.required],
       });
   }

@@ -7,6 +7,7 @@
           formControlName="policyNumber"
           class="form-control"
           placeholder="Policy number"
+          [ngClass]="{ 'is-invalid': policyNumber.invalid && policyNumber.touched }"
           required />
         <div
           *ngIf="
@@ -17,6 +18,9 @@
           <div *ngIf="policyNumber.errors?.['required']">
             Policy Number is required.
           </div>
+          <div *ngIf="policyNumber.errors?.['pattern']">
+            Only numbers.
+          </div>
         </div>
       </div>
 
@@ -26,6 +30,7 @@
           class="form-control"
           formControlName="policyHolderName"
           [formControl]="policyPlaceholderCtrl"
+          [ngClass]="{ 'is-invalid': policyHolderName.invalid && policyHolderName.touched }"
           required>
           <option *ngFor="let ph of policyHolders" [value]="ph.name">
             {{ ph.name }}
