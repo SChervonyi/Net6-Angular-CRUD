@@ -1,15 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
-import { catchError, switchMap, tap } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { catchError, shareReplay } from "rxjs/operators";
 import { ErrorHandlerService } from "src/app/core/services/error-hander.service";
 import { environment } from "src/environments/environment";
 import { PolicyHolder } from "../models/policyHolder";
 
 @Injectable()
 export class PolicyHolderService {
-  private values$: BehaviorSubject<PolicyHolder[]> = new BehaviorSubject<PolicyHolder[]>([]);
-  private cached: boolean = false;
+  private cachedValues$: Observable<PolicyHolder[]> | null = null;
   private baseUrl: string = `${environment.BASE_URL}/api/policyHolder`;
 
   constructor(
@@ -18,17 +17,14 @@ export class PolicyHolderService {
     ) { }
 
   public get(): Observable<PolicyHolder[]> {
-    if (this.cached) {
-      return this.values$.asObservable();
+    if (this.cachedValues$) {
+      return this.cachedValues$;
     }
 
-    return this.http.get<PolicyHolder[]>(`${this.baseUrl}`).pipe(
-      tap(() => this.cached = true),
-      switchMap((values: PolicyHolder[]) => {
-        this.values$.next(values);
-        return this.values$;
-      }),
+    this.cachedValues$ = this.http.get<PolicyHolder[]>(`${this.baseUrl}`).pipe(
+      shareReplay(1),
       catchError(this.errorHandlerService.handleError)
     );
+    return this.cachedValues$;
   }
 }
