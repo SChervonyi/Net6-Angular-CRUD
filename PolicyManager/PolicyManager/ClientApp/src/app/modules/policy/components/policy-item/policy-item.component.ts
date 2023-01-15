@@ -1,7 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Policy } from '../../models/policy';
-import { PolicyService } from '../../services/policy.service';
 
 @Component({
   selector: 'app-policy-item',
@@ -10,35 +8,27 @@ import { PolicyService } from '../../services/policy.service';
 })
 export class PolicyItemComponent implements OnInit {
   @Input() policyInput!: Policy;
+  @Output() deletePolicy = new EventEmitter<Policy>();
+  @Output() updatePolicy = new EventEmitter<Policy>();
 
   public editing: boolean = false;
 
-  constructor(
-    private policyService: PolicyService,
-    private toasterService: ToastrService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  deletePolicy(item: Policy) {
-    this.policyService.delete(item)
-      .subscribe(
-        () => this.toasterService.warning(`Policy ${item.policyNumber} Deleted!`, 'Deleted Successfuly'),
-        errorResponse => this.toasterService.error(errorResponse.error, 'Error deleting policy'));
+  onDeletePolicy(item: Policy) {
+    this.deletePolicy.emit(item);
   }
 
-  editPolicy() {
+  onEditPolicy() {
     this.editing = true;
   }
 
   onSubmitPolicy(updatedPolicy: Policy) {
-    this.policyService.update(updatedPolicy)
-      .subscribe(() => {
-        this.editing = false;
-        this.toasterService.success('Policy succesfully updated.', 'Updated');
-      },
-      errorResponse => this.toasterService.error(errorResponse.error, 'Error updating policy'));
+    this.editing = false;
+    this.updatePolicy.emit(updatedPolicy);
   }
 
   onCancel() {

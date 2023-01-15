@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Policy } from '../../models/policy';
 import { PolicyService } from '../../services/policy.service';
 
@@ -9,9 +9,10 @@ import { PolicyService } from '../../services/policy.service';
   templateUrl: './policy-list.component.html',
   styleUrls: ['./policy-list.component.scss']
 })
-export class PolicyListComponent implements OnInit {
+export class PolicyListComponent implements OnInit, OnDestroy {
 
-  public policies$!: Observable<Policy[]>
+  public policies: Policy[] = []
+  private sub?: Subscription;
 
   constructor(
     private policyService: PolicyService,
@@ -19,12 +20,38 @@ export class PolicyListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.policies$ = this.policyService.get();
+    this.sub = this.policyService.get().subscribe(policies => this.policies = policies);
   }
 
   onSubmitPolicy(newPolicy: Policy) {
     this.policyService.add(newPolicy)
-      .subscribe(() => this.toasterService.success('Policy succesfully added.', 'Added'),
+      .subscribe(() => {
+        this.policies.push(newPolicy);
+        this.toasterService.success('Policy succesfully added.', 'Added');
+      },
         errorResponse => this.toasterService.error(errorResponse.error, 'Error adding policy'));
+  }
+
+  onDeletePolicy(deletedPolicy: Policy) {
+    this.policyService.delete(deletedPolicy)
+    .subscribe(
+      () => {
+        this.policies = this.policies.filter(policy => policy !== deletedPolicy);
+        this.toasterService.warning(`Policy ${deletedPolicy.policyNumber} Deleted!`, 'Deleted Successfully');
+      },
+      errorResponse => this.toasterService.error(errorResponse.error, 'Error deleting policy'));
+  }
+
+  onUpdatePolicy(updatedPolicy: Policy) {
+    this.policyService.update(updatedPolicy)
+      .subscribe(() => {
+        this.toasterService.success('Policy successfully updated.', 'Updated');
+      },
+      errorResponse => this.toasterService.error(errorResponse.error, 'Error updating policy'));
+  }
+
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
 }
