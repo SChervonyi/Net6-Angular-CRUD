@@ -14,7 +14,7 @@
             policyNumber.invalid &&
             (policyNumber.dirty || policyNumber.touched)
           "
-          class="alert alert-danger">
+          class="invalid-feedback">
           <div *ngIf="policyNumber.errors?.['required']">
             Policy Number is required.
           </div>
@@ -39,7 +39,7 @@
 
         <div
           *ngIf="policyHolderName.invalid && policyHolderName.touched"
-          class="alert alert-danger">
+          class="invalid-feedback">
           <div *ngIf="policyHolderName.errors?.['required']">
             Policy Holder is required.
           </div>
