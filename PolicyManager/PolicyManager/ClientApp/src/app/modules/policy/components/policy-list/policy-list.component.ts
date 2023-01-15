@@ -42,9 +42,10 @@ export class PolicyListComponent implements OnInit, OnDestroy {
       errorResponse => this.toasterService.error(errorResponse.error, 'Error deleting policy'));
   }
 
-  onUpdatePolicy(updatedPolicy: Policy) {
+  onUpdatePolicy(updatedPolicy: Policy, index: number) {
     this.policyService.update(updatedPolicy)
       .subscribe(() => {
+        this.policies[index] = updatedPolicy;
         this.toasterService.success('Policy successfully updated.', 'Updated');
       },
       errorResponse => this.toasterService.error(errorResponse.error, 'Error updating policy'));

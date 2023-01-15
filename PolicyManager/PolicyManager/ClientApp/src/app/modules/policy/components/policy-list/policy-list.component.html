@@ -17,6 +17,6 @@
     </div>
   </div>
   <app-policy-form (submitPolicy)="onSubmitPolicy($event)"></app-policy-form>
-  <app-policy-item *ngFor="let policy of policies" [policyInput]="policy"
-      (updatePolicy)="onUpdatePolicy($event)" (deletePolicy)="onDeletePolicy($event)"></app-policy-item>
+  <app-policy-item *ngFor="let policy of policies, index as i" [policyInput]="policy"
+      (updatePolicy)="onUpdatePolicy($event, i)" (deletePolicy)="onDeletePolicy($event)"></app-policy-item>
 </div>
