@@ -27,7 +27,7 @@ export class PolicyListComponent implements OnInit, OnDestroy {
     this.policyService.add(newPolicy)
       .subscribe(() => {
         this.policies.push(newPolicy);
-        this.toasterService.success('Policy succesfully added.', 'Added');
+        this.toasterService.success('Policy successfully added.', 'Added');
       },
         errorResponse => this.toasterService.error(errorResponse.error, 'Error adding policy'));
   }
