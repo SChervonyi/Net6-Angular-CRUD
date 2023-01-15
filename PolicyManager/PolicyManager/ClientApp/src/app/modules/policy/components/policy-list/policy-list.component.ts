@@ -51,7 +51,6 @@ export class PolicyListComponent implements OnInit, OnDestroy {
       errorResponse => this.toasterService.error(errorResponse.error, 'Error updating policy'));
   }
 
-
   ngOnDestroy() {
     this.sub?.unsubscribe();
   }
