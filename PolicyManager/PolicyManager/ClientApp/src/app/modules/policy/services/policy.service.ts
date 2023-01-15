@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Policy } from '../models/policy';
 import { environment } from 'src/environments/environment';
-import { ErrorHandlerService } from 'src/app/core/services/error-hander.service';
+import { ErrorHandlerService } from 'src/app/core/services/error-handler.service';
 
 @Injectable()
 export class PolicyService {

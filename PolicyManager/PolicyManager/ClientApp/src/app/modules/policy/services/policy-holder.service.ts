@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { catchError, shareReplay } from "rxjs/operators";
-import { ErrorHandlerService } from "src/app/core/services/error-hander.service";
+import { ErrorHandlerService } from "src/app/core/services/error-handler.service";
 import { environment } from "src/environments/environment";
 import { PolicyHolder } from "../models/policyHolder";
 
