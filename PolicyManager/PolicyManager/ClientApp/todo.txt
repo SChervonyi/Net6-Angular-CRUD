@@ -1,5 +1,15 @@
 1. Add component tests: https://github.com/KrunalLathiya/Angular7RoutingExample/tree/master/src/app
 2. Add media query for small width
-3. Move to Jest
+3. Done - Move to Jest
 4. Add unit tests
 5. Improve error handling. Display backend text in toast.
+6. Implement drag & drop
+7. Refactor to Books Manager
+   a. Books fields: Name, Genre, Author, Page Count, IsPublished (IsHardCover, IsBestseller)
+   b. Books list, Author list
+   c. Add book, add Author
+   d. Get unpublished Authors
+8. Add SQL lite
+9. Move to DDD
+10. Add unit tests
+11. Add cucumber
