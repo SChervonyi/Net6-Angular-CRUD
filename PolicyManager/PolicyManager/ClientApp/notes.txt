@@ -9,3 +9,6 @@ CRUD Cache service: https://medium.com/@dariusmihneabogdan/how-to-write-a-shared
 4 Cache libs: https://danielk.tech/home/angular-http-cache-how-to
 Cache with Http Interceptor: https://blog.logrocket.com/caching-with-httpinterceptor-in-angular/
 Cache Service: https://medium.com/@AurelienLeloup/cache-http-requests-with-rxjs-for-angular-eb9bee93824d
+
+Cypress get started: https://docs.cypress.io/guides/component-testing/angular/quickstart
+Cypress examples: https://github.com/cypress-io/cypress-component-testing-apps

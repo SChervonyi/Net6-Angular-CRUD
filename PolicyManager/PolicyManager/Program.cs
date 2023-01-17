@@ -20,7 +20,8 @@ builder.Services.AddCors(options =>
                 policy =>
                 {
                     policy.WithOrigins(
-                        "https://localhost:44439")
+                        "https://localhost:44439", // UI app address
+                        "http://localhost:8080") // Cypress address
                     .AllowAnyHeader()
                     .AllowAnyMethod();
                 });
