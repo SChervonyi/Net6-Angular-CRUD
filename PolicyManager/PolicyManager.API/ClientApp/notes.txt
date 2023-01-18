@@ -10,5 +10,9 @@ CRUD Cache service: https://medium.com/@dariusmihneabogdan/how-to-write-a-shared
 Cache with Http Interceptor: https://blog.logrocket.com/caching-with-httpinterceptor-in-angular/
 Cache Service: https://medium.com/@AurelienLeloup/cache-http-requests-with-rxjs-for-angular-eb9bee93824d
 
+Jest Angular mocking: https://www.beyondjava.net/jest-mocking-an-angular-service
+
 Cypress get started: https://docs.cypress.io/guides/component-testing/angular/quickstart
 Cypress examples: https://github.com/cypress-io/cypress-component-testing-apps
+Cypress e2e: https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test
+Cypress matching URL: https://egghead.io/blog/intercepting-network-requests-in-cypress
