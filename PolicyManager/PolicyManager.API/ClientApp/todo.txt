@@ -9,6 +9,23 @@
    b. Books list, Author list
    c. Add book, add Author
    d. Get unpublished Authors
+   c. {
+    "author": {
+        "id": "string",
+        "firstName": "string",
+        "lastName": "string",
+        "age": "number",
+        "gender": "string",
+        "books": ["string"]
+    },
+    "book": {
+        "id": "string",
+        "name": "string",
+        "pageCount": "number",
+        "isPublished": "boolean",
+        "authors": ["string"]
+    }
+  }
 8. Add SQL lite
 9. Move to DDD
 10. Add unit tests
